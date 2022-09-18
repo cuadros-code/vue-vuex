@@ -22,6 +22,7 @@ export default createStore({
       state.isLoading = isLoading
     }
   },
+  // Pueden ser Asincronas
   actions: {
     async incrementRandomInt( ctx ) {
       ctx.commit('setLoading', true)
@@ -33,6 +34,11 @@ export default createStore({
       } finally {
         ctx.commit('setLoading', false)
       }
+    }
+  },
+  getters: {
+    squareCount( state ){
+      return state.count * state.count
     }
   }
 
