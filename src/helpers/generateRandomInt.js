@@ -4,6 +4,6 @@ export const generateRandomInt = () => {
     const rnsInt = Math.floor(Math.random() * 20)
     setTimeout(() => {
       resolve(rnsInt)
-    }, 1000);
+    }, 2000);
   })
 }
