@@ -1,45 +1,20 @@
-import { generateRandomInt } from "@/helpers/generateRandomInt";
+import state from './state'
+import * as mutations from './mutation'
+import * as actions from './actions'
+import * as getters from './getters'
 
 export const counterStore = {
   
   namespaced: true,
 
-  state: () => ({
-    count: 0,
-    lastMutation: 'none',
-    isLoading: false
-  }),
+  // Estado modulo
+  state,
+
   // No pueden ser Asincronas
-  mutations: {
-    increment( state ) {
-      state.count++;
-      state.lastMutation = 'increment'
-    },
-    incrementBy( state, value ) {
-      state.count += value;
-      state.lastMutation = 'incrementBy'
-    },
-    setLoading( state, isLoading ) {
-      state.isLoading = isLoading
-    }
-  },
+  mutations,
+
   // Pueden ser Asincronas
-  actions: {
-    async incrementRandomInt( ctx ) {
-      ctx.commit('setLoading', true)
-      try {
-        const numberRnt = await generateRandomInt()
-        ctx.commit('incrementBy', numberRnt)
-      } catch (error) {
-        console.log({error});
-      } finally {
-        ctx.commit('setLoading', false)
-      }
-    }
-  },
-  getters: {
-    squareCount( state ){
-      return state.count * state.count
-    }
-  },
+  actions,
+
+  getters,
 }
